@@ -1,0 +1,6 @@
+{
+    "extension": ["js"],
+    "spec": "test/**/*.spec.js",
+    "require": "mocha",
+    "exit": true
+  }
