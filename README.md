@@ -8,6 +8,8 @@ API creada usando NodeJS y Express. Esta API permite interactuar con una serie d
 
 - NodeJS
 - Express
+- Chai
+- Mocha
 
 ---
 
