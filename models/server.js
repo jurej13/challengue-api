@@ -6,7 +6,7 @@ class Server {
 		this.app = express()
 		this.port = 3200
 		this.paths = {
-			files: "/files/data",
+			files: "/files",
 		}
 		this.middlewares()
 		this.routes()

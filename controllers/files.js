@@ -37,6 +37,7 @@ export const httpsGet = (options) =>
 
 export const getFilesData = async (req, res) => {
 	try {
+		const searchTerm = req.query.fileName
 		if (req.testData) {
 			const results = req.testData
 			if (validateResponseSchema(results)) {
@@ -59,7 +60,7 @@ export const getFilesData = async (req, res) => {
 		const fileListResponse = await httpsGet(fileOptions)
 		const files = fileListResponse.files
 
-		const results = []
+		let results = []
 		for (const file of files) {
 			const fileDataOptions = {
 				hostname: "echo-serv.tbxnet.com",
@@ -80,12 +81,12 @@ export const getFilesData = async (req, res) => {
 				console.error(`Error retrieving data for file ${file}:`, error)
 			}
 		}
-
-		if (results.length > 0) {
-			res.status(200).json(results)
-		} else {
-			res.status(500).json({ message: "Error retrieving files data" })
+		if (searchTerm) {
+			results = results.filter((fileData) => {
+				return fileData.file.includes(searchTerm)
+			})
 		}
+		res.status(200).json(results.length > 0 ? results : [])
 	} catch (error) {
 		console.error("Error retrieving files data:", error)
 		res.status(500).json({ message: "Error retrieving files data" })
@@ -156,3 +157,19 @@ export const fetchFileData = (options, fileName) =>
 			})
 		})
 	})
+
+export const getFilesList = async (req, res) => {
+	const fileOptions = {
+		hostname: "echo-serv.tbxnet.com",
+		path: "/v1/secret/files",
+		method: "GET",
+		headers: {
+			Authorization: "Bearer aSuperSecretKey",
+			"Content-Type": "application/json",
+		},
+	}
+
+	const fileListResponse = await httpsGet(fileOptions)
+
+	res.status(200).json(fileListResponse.files)
+}
