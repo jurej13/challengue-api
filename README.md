@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Challenge api, api creada usando NodeJS + Express.
+API creada usando NodeJS y Express. Esta API permite interactuar con una serie de archivos y realizar búsquedas basadas en el nombre del archivo.
 
 ## Tecnologías
 
@@ -43,9 +43,7 @@ npm install
 
 ### 3. Ejecutar el servidor
 
-Con las dependencias instaladas, ya puedes iniciar el servidor.
-
-Para iniciar el servidor:
+Con las dependencias instaladas, ya puedes iniciar el servidor. Para ello, ejecuta el siguiente comando:
 
 ```bash
 npm start
@@ -53,21 +51,21 @@ npm start
 
 ### 4. Endpoints
 
-Una vez iniciado el servidor, puede acceder a los siguientes endpoints:
+Una vez iniciado el servidor, puedes acceder a los siguientes endpoints:
 
-a. En este endpoint se podra ver los files que no posean errores.
+a. Ver los archivos sin errores:
 
 ```bash
 http://localhost:3200/files/data
 ```
 
-b. Buscador por fileName:
+b. Buscar archivos por fileName:
 
 ```bash
 http://localhost:3200/files/data?fileName=test2
 ```
 
-c. En este endpoint se podra ver la lista de files.
+c. Ver la lista de archivos disponibles:
 
 ```bash
 http://localhost:3200/files/list
@@ -75,7 +73,7 @@ http://localhost:3200/files/list
 
 ### 5. Probar el testing
 
-Para ver los tests:
+Para ejecutar los tests y verificar que todo funciona correctamente, usa el siguiente comando:
 
 ```bash
 npm test
